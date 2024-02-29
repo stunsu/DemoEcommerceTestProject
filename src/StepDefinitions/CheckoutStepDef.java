@@ -60,5 +60,11 @@ public class CheckoutStepDef {
         orderConfirmationPage.orderConfirmationMessage(driver);
     }
 
+    @Given("sign in with {string} and {string}")
+    public void sign_in_with_and(String username, String password) {
+        SignInPage signInPage = new SignInPage();
+        signInPage.signIn(driver,username, password);
+    }
+
 
 }
