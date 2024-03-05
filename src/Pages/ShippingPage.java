@@ -30,7 +30,7 @@ public class ShippingPage {
         WebElement lastName = driver.findElement(By.cssSelector("input[name='lastname']"));
         lastName.sendKeys("Monsieur");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='firstname']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[name='street[0]']")));
         WebElement streetAddress = driver.findElement(By.cssSelector("input[name='street[0]']"));
         streetAddress.sendKeys("Bucharest 18");
 

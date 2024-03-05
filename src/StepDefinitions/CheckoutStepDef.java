@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import Base.TestBase;
 import Pages.*;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -8,15 +9,23 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 
-public class CheckoutStepDef {
+import java.io.IOException;
 
-    WebDriver driver;
+public class CheckoutStepDef extends TestBase {
+
+//    WebDriver driver;
+//    @Before
+//    public void setDriver(){
+//        driver = new ChromeDriver();
+//        driver.get("https://magento.softwaretestingboard.com/");
+//    }
 
     @Before
-    public void setDriver(){
-        driver = new ChromeDriver();
-        driver.get("https://magento.softwaretestingboard.com/");
+    public void setUP(){
+        initialization();
     }
 
     @Given("user navigates to the homepage")
@@ -53,6 +62,7 @@ public class CheckoutStepDef {
     public void selects_a_payment_method() throws InterruptedException{
         PaymentPage paymentPage = new PaymentPage();
         paymentPage.completePayment(driver);
+
     }
     @Then("user is able to place the order")
     public void user_is_able_to_place_the_order() throws InterruptedException{
@@ -65,6 +75,13 @@ public class CheckoutStepDef {
         SignInPage signInPage = new SignInPage();
         signInPage.signIn(driver,username, password);
     }
+
+    @And("selects a payment method using a different billing address")
+    public void selects_a_payment_method_using_a_different_billing_address() throws InterruptedException{
+        PaymentWithDifferentBillingAddress paymentWithDifferentBillingAddress = new PaymentWithDifferentBillingAddress();
+        paymentWithDifferentBillingAddress.payWithDifferentBillingAddress(driver);
+    }
+
 
 
 }
